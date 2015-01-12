@@ -1,0 +1,21 @@
+
+<center>
+<div class="jumbotron">
+  <h1>The Bog Adventure</h1>
+
+
+  <p>Welcome and Learn All About the Bog Creatures</p>
+
+  <p><%= link_to 'Create Creature', new_creature_path %></p>
+
+  <% @creatures.each do |creature| %>
+  <li><p><%= creature.name %></p></li>
+  <p><%= link_to 'About Creature', creature %></p>
+
+  <% end %>
+
+
+</div>
+</center>
+
+

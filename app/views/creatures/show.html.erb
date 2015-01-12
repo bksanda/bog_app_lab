@@ -1,0 +1,23 @@
+
+<center>
+<div class="jumbotron">
+<h1> Bog Creature: <%= @creature.name %> </h1>
+
+<!-- <div class="row">
+  <div class="col-md-8"> -->
+
+  <li> <%= @creature.desc %> </li>
+
+        <% @results[0..10].each do |photo| %>
+      <a href="<%=photo.remove('_s')%>" class="img-rounded"><%= image_tag photo %></a>
+
+        <% end %>
+
+  <p><%= link_to 'Edit', edit_creature_path(@creature) %>
+  | <%= link_to 'Delete', creature_path(@creature), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+
+  </div>
+<!-- </div>
+</div> -->
+</center>
