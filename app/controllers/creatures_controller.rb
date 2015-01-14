@@ -6,76 +6,77 @@ class CreaturesController < ApplicationController
   end
 
   def new
-    # render plain: "new"
     @creature = Creature.new
+    @tags = Tag.all
   end
 
   def create
+    @creature = Creature.create(creature_params)
+    @tags = Tag.all
 
-    #render plain: "create"
-    #render json: params
-    #@creature = Creature.new(params.require(:creature).permit(:name, :desc))
-    # @creatures.save
-    # redirect_to "/show"
-
-    #using .new method
-    # @creature = Creature.new
-    # @creature.name = params[:creature][:name]
-    # @creature.desc = params[:creature][:desc]
-    # @creature.save
-    # redirect_to creatures_path
-
-    #create method
-    # creature_params = params.require(:creature).permit(:name, :desc)
-    # Creature.create(creature_params)
-
-    # redirect_to creatures_path
-
-    # @creature = Creature.create(creature_params)
-    @creature = Creature.new(creature_params)
-    if @creature.save
-      redirect_to @creature #creatures_path
-    else
+    if @creature.errors.any?
       render 'new'
+
+    else
+
+      @creature.tags.clear
+      tags = params[:creature][:tag_ids]
+
+      tags.each do |tag_id|
+        @creature.tags << Tag.find(tag_id) unless tag_id.blank?
+      end
+
+      flash[:success] = "Your creature has been added"
+      redirect_to creatures_path
+
     end
 
   end
 
   def show
-    #render plain: "show"
+
     @creature = Creature.find_by_id(params[:id]) #@creature = Creature.find(params[:id])
+
+
     not_found unless @creature
 
     list= flickr.photos.search :text => @creature.name, :sort => "relevance"
        @results = list.map do |photo|
        FlickRaw.url_s(photo)
      end
+
   end
 
-  # def results
+  def tag
+    tag = Tag.find_by_name(params[:tag])
+    @creatures = tag ? tag.creatures : []
 
-  #   @search = params[:search]
-  #   list= flickr.photos.search :text => @search, :sort => "relevance"
-
-  #   @results = list.map do |photo|
-  #     FlickRaw.url_s(photo)
-  #   end
-
-  # end
+  end
 
   def edit
     #rend plain: "edit"
     @creature = Creature.find(params[:id])
+    @tags = Tag.all
   end
 
   def update
-    @creature = Creature.find(params[:id])
 
-    if @creature.update(params[:creature].permit(:name, :desc))
-      redirect_to @creature
-    else
-      render 'edit'
+    #return render json: params[:creature][:tag_ids]
+
+    @creature = Creature.find_by_id(params[:id])
+    @creature.name = params[:creature][:name]
+    @creature.desc = params[:creature][:desc]
+    @creature.save
+
+    @creature.tags.clear
+    tags = params[:creature][:tag_ids]
+
+    tags.each do |tag_id|
+      @creature.tags << Tag.find(tag_id) unless tag_id.blank?
     end
+
+    redirect_to creatures_path
+
   end
 
   def destroy

@@ -1,23 +1,29 @@
 
-<center>
-<div class="jumbotron">
-<h1> Bog Creature: <%= @creature.name %> </h1>
+<div class = "row">
+  <div class ="col-md-4 col-md-offset-4"
+    <div class="jumbotron">
+      <h1> Bog Creature: <%= @creature.name %> </h1>
 
-<!-- <div class="row">
-  <div class="col-md-8"> -->
+      <%= render partial: "flash" %>
 
-  <li> <%= @creature.desc %> </li>
+      <li> <%= @creature.desc %> </li>
 
-        <% @results[0..10].each do |photo| %>
-      <a href="<%=photo.remove('_s')%>" class="img-rounded"><%= image_tag photo %></a>
+      <% @results[0..10].each do |photo| %>
+        <a href="<%=photo.remove('_s')%>" class="img-rounded"><%= image_tag photo %></a>
+      <% end %>
 
-        <% end %>
+      <p> <b> Tags: </b> </p>
+      <p>
+      <% @creature.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag.name) %>
+      <% end %>
+      </p>
 
-  <p><%= link_to 'Edit', edit_creature_path(@creature) %>
-  | <%= link_to 'Delete', creature_path(@creature), method: :delete, data: { confirm: 'Are you sure?' } %>
-  </p>
+      <p><%= link_to '&larr; <b> back </b>'.html_safe, creatures_path %> </p>
+      <p><%= link_to 'Edit', edit_creature_path(@creature) %>
+      | <%= link_to 'Delete', creature_path(@creature), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
 
+    </div>
   </div>
-<!-- </div>
-</div> -->
-</center>
+</div>
