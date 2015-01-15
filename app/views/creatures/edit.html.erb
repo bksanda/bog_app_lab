@@ -1,12 +1,14 @@
-<div class="text-center">
-  <div class="jumbotron">
-  <h1>Edit Creatures</h1>
+<div class="jumbotron">
+  <div class ="row">
 
-  <p>This is where you can change information about the creatures that live in the bog!</p>
+      <center>
+        <h1>Edit Creatures</h1>
+        <p>This is where you can change information about the creatures that live in the bog!</p>
+      </center>
+      <%= render partial: 'partials/form' %>
 
-  <%= render partial: 'form' %>
+      <%= render partial: "partials/flash" %>
 
-  <%= render partial: "flash" %>
 
   </div>
 </div>

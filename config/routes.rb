@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   #using error controller
   # get 'errors/file_not_found'
 
@@ -11,10 +12,14 @@ Rails.application.routes.draw do
 
   resources :creatures # if not update or destroy don't comment out --->, except: [:update,:destroy]  #=== "this is the way we should do it in real life" -Anil
 
-  get "creatures/tag/:tag" => "creatures#tag", as: :tag
+  get "creatures/tag/:tag" => "creatures#tag", as: :tagc
+
+  resources :tags
+
 
   # get '*path' => redirect('/404.html')
   get '*path', to: "application#not_found"
+
 
 
   #using error controller

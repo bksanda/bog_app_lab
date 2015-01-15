@@ -30,13 +30,10 @@ class CreaturesController < ApplicationController
       redirect_to creatures_path
 
     end
-
   end
 
   def show
-
     @creature = Creature.find_by_id(params[:id]) #@creature = Creature.find(params[:id])
-
 
     not_found unless @creature
 
@@ -44,13 +41,11 @@ class CreaturesController < ApplicationController
        @results = list.map do |photo|
        FlickRaw.url_s(photo)
      end
-
   end
 
   def tag
     tag = Tag.find_by_name(params[:tag])
     @creatures = tag ? tag.creatures : []
-
   end
 
   def edit
@@ -60,9 +55,7 @@ class CreaturesController < ApplicationController
   end
 
   def update
-
     #return render json: params[:creature][:tag_ids]
-
     @creature = Creature.find_by_id(params[:id])
     @creature.name = params[:creature][:name]
     @creature.desc = params[:creature][:desc]
@@ -76,7 +69,6 @@ class CreaturesController < ApplicationController
     end
 
     redirect_to creatures_path
-
   end
 
   def destroy
@@ -85,6 +77,7 @@ class CreaturesController < ApplicationController
 
     redirect_to creatures_path
   end
+
 
   private
 

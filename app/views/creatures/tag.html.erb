@@ -1,20 +1,25 @@
-<center>
 <div class="jumbotron">
-  <h1>Tagged</h1>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <h1>Tagged</h1>
+
+      <p>Welcome and Learn All About the Bog Creatures</p>
+
+      <p><%= link_to 'Create Creature', new_creature_path %></p>
+
+      <%= render partial: "partials/flash" %>
+
+      <% @creatures.each do |creature| %>
+      <li><p><%= creature.name %></p></li>
+      <p><%= link_to 'About Creature', creature %></p>
 
 
-  <p>Welcome and Learn All About the Bog Creatures</p>
-
-  <p><%= link_to 'Create Creature', new_creature_path %></p>
-
-  <%= render partial: "flash" %>
-
-  <% @creatures.each do |creature| %>
-  <li><p><%= creature.name %></p></li>
-  <p><%= link_to 'About Creature', creature %></p>
-
-  <% end %>
 
 
+      <% end %>
+
+    </div>
+  </div>
 </div>
-</center>
+
+

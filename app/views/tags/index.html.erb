@@ -1,0 +1,11 @@
+
+hello
+
+<%= render partial: "partials/flash" %>
+
+<% @tags.each do |tag| %>
+  <li><%= link_to tag.name, tagc_path(tag.name) %>
+   <%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+
+

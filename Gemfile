@@ -42,3 +42,5 @@ gem 'spring',        group: :development
 
 gem 'bootstrap_form'
 
+gem 'bootstrap-tagsinput-rails', '~> 0.4.2.1'
+
