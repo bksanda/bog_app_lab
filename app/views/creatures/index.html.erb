@@ -1,23 +1,31 @@
-<div class="jumbotron">
- <div class ="row">
-  <div class ="col-md-4 col-md-offset-4">
+<div class="container">
+  <div class="jumbotron">
+    <%= render partial: "partials/flash" %>
+    <h2>Tracking Bog Creatures</h2>
+    <p>Welcome and learn all about the creatures in a bog.</p>
+    <p>Researchers at your local biology lab are exploring and documenting a series of bogs, and the creatures of interest. Our job is to encourage people in the community to explore the bogs and submit their findings using our web application.</p>
+    <p>
+    <%= link_to "<button type='button' class='btn btn-primary'>Add More Creatures</button>".html_safe, new_creature_path %>
+    <p/>
 
-      <h1><center>The Bog Adventure</center></h1>
-
-        <p>Welcome and Learn All About the Bog Creatures</p>
-
-        <p><%= link_to 'Create Creature', new_creature_path %></p>
-
-        <%= render partial: "partials/flash" %>
-
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><h4>Creatures Collected</h4>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
         <% @creatures.each do |creature| %>
-          <li><p><%= creature.name %></p></li>
-          <p><%= link_to 'About Creature', creature %></p>
+          <tr>
+            <td><h5><%= creature.name %></h5></td>
+            <td><h5><%= link_to "<button type='button' class='btn btn-primary'>More Info</button>".html_safe, creature %></h5></td>
+            <td><h5><%= link_to "<button type='button' class='btn btn-primary'>Delete</button>".html_safe, creature, method: :delete, data: { confirm: 'Are you sure?' } %></h5><td>
+          </tr>
         <% end %>
-
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-
-
-

@@ -1,21 +1,19 @@
-<div class="jumbotron">
-  <div class = "row">
-    <div class ="col-md-4 col-md-offset-4">
-
+<div class="container">
+  <div class="jumbotron">
 
       <h1> Bog Creature: <%= @creature.name %> </h1>
 
       <%= render partial: "partials/flash" %>
 
-      <li> <%= @creature.desc %> </li>
+      <p><%= @creature.desc %></p>
 
+      <div class="img">
       <% @results[0..10].each do |photo| %>
         <a href="<%=photo.remove('_s')%>" class="img-rounded"><%= image_tag photo %></a>
       <% end %>
+      </div>
 
-      <p> <b> Tags: </b> </p>
-
-      <p>
+      <p><b> Tags: </b>
       <% @creature.tags.each do |tag| %>
         <%= link_to tag.name, tagc_path(tag.name) %>
       <% end %>
@@ -26,6 +24,5 @@
       | <%= link_to 'Delete', creature_path(@creature), method: :delete, data: { confirm: 'Are you sure?' } %>
       </p>
 
-    </div>
   </div>
 </div>

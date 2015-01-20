@@ -1,14 +1,15 @@
-<div class="jumbotron">
-  <div class ="row">
+<div class="container">
+  <div class="jumbotron">
 
-      <center>
-        <h1>Edit Creatures</h1>
-        <p>This is where you can change information about the creatures that live in the bog!</p>
-      </center>
+      <h1>Edit: <%= @creature.name %></h1>
+
+      <p>Please give us more information about this creature.</p>
+
       <%= render partial: 'partials/form' %>
 
       <%= render partial: "partials/flash" %>
 
+      <p><%= link_to '&larr; <b> back </b>'.html_safe, creature_path %> </p>
 
   </div>
 </div>

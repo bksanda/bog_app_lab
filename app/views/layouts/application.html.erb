@@ -11,8 +11,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/tags">Tags</a></li>
+        <li role="presentation"><a href="creatures/new">Add Creature</a></li>
+        <li role="presentation"><a href="tags/new">Add Tag</a></li>
+    </ul>
+  </div>
+  <%= yield %>
 
 </body>
 </html>

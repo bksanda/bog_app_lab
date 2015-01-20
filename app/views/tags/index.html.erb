@@ -1,11 +1,25 @@
+<div class="container">
 
-hello
-
-<%= render partial: "partials/flash" %>
-
-<% @tags.each do |tag| %>
-  <li><%= link_to tag.name, tagc_path(tag.name) %>
-   <%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-  <% end %>
-
-
+  <div class="jumbotron">
+    <%= render partial: "partials/flash" %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><h2>Creatures Tags List<h2>
+            <h3><%= link_to '&larr; <b> back </b>'.html_safe, creatures_path %></h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td><%= link_to tag.name, tagc_path(tag.name) %></td>
+              <td><%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

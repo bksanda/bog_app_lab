@@ -2,7 +2,7 @@ class CreaturesController < ApplicationController
 
   def index
     @creatures = Creature.all
-    # render plain: "Hello"
+
   end
 
   def new
@@ -52,6 +52,7 @@ class CreaturesController < ApplicationController
     #rend plain: "edit"
     @creature = Creature.find(params[:id])
     @tags = Tag.all
+
   end
 
   def update
